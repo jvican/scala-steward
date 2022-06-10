@@ -86,6 +86,7 @@ lazy val core = myCrossProject("core")
   .settings(dockerSettings)
   .settings(
     libraryDependencies ++= Seq(
+      Dependencies.attoCore,
       Dependencies.bcprovJdk15to18,
       Dependencies.betterFiles,
       Dependencies.catsCore,
@@ -317,7 +318,7 @@ lazy val dockerSettings = Def.settings(
       Cmd("RUN", s"$coursierBin install --install-dir $binDir scalafix scalafmt")
     )
   },
-  Docker / packageName := s"fthomas/${name.value}",
+  Docker / packageName := s"jvican/${name.value}",
   dockerUpdateLatest := true,
   dockerEnvVars := Map(
     "PATH" -> "/opt/docker/sbt/bin:${PATH}",
